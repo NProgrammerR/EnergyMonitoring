@@ -1,7 +1,7 @@
 import json
 
 # Assuming your JSON data is stored in a file named 'electricity_data.json'
-with open('stopcua.json', 'r') as file:
+with open('./Resources/stopcua.json', 'r') as file:
     data = json.load(file)
 
 # Extracting data from the JSON structure
