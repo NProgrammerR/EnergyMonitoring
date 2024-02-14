@@ -26,21 +26,10 @@ start_time = pd.Timestamp('2024-02-14 00:00:00')
 time_intervals = pd.date_range(start=start_time, periods=num_intervals, freq='5s')
 
 # Zoom into a 6-hour window
-end_time = start_time + pd.Timedelta(hours=24)
+end_time = start_time + pd.Timedelta(hours=6)
 mask = (time_intervals >= start_time) & (time_intervals <= end_time)
 zoomed_time_intervals = time_intervals[mask]
 zoomed_energy_consumption = energy_consumption[mask]
-
-# Plot the data
-plt.figure(figsize=(10, 6))
-plt.plot(zoomed_time_intervals, zoomed_energy_consumption,color='blue', linestyle='-')
-plt.title('Energy Consumption of Welding Machine')
-plt.xlabel('Time')
-plt.ylabel('Energy Consumption')
-plt.xticks(rotation=45)
-plt.grid(True)
-plt.tight_layout()
-plt.show()
 
 # calculate total energy consumption
 time_interval = 5
@@ -58,3 +47,24 @@ print("num_intervals: ", num_intervals)
 # calculate idle consumption
 total_idle_consumption = idle_consumption * total_idle_time
 print("Total idle consumption: ", total_idle_consumption)
+
+# Plot the data
+fig, axs = plt.subplots(1, 2, figsize=(15, 6))  # 1 row, 2 columns
+
+# First subplot
+axs[0].plot(zoomed_time_intervals, zoomed_energy_consumption,color='blue', linestyle='-')
+axs[0].set_title('Energy Consumption of Welding Machine')
+axs[0].set_xlabel('Time')
+axs[0].set_ylabel('Energy Consumption')
+axs[0].tick_params(axis='x', rotation=45)
+axs[0].grid(True)
+
+# Second subplot
+labels = 'Idle', 'Active'
+sizes = [int(total_idle_time), int(total_active_time)]
+axs[1].pie(sizes, labels=labels, autopct='%1.1f%%')
+axs[1].set_title('Idle and Active Time Distribution')
+
+plt.tight_layout()
+plt.show()
+
