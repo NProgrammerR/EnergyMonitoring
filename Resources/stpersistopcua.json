@@ -1,0 +1,148 @@
+[
+{
+  "stPersistOPCUA": {
+    "arrstPanelData": [
+      {
+        "sWorkpieceName": "Workpiece123",
+        "stPanelWelds": {
+          "nTotal": 8,
+          "nPf": 5,
+          "nPb": 3
+        },
+        "stPanelWeldLength": {
+          "fTotal": 18.7,
+          "fPf": 11.5,
+          "fPb": 7.2
+        },
+        "arrstRobotWelds": [
+          {
+            "nTotal": 5,
+            "nPf": 3,
+            "nPb": 2
+          }
+        ],
+        "arrstRobotWeldLength": [
+          {
+            "fTotal": 12.3,
+            "fPf": 7.8,
+            "fPb": 4.5
+          }
+        ],
+        "arrstCurrentJobList": [
+          {
+            "dtStartTime": "2024-02-08T08:00:00",
+            "nJobListNumber": 123,
+            "sJobListSeqId": "Seq123",
+            "stTotalWelds": {
+              "nTotal": 10,
+              "nPf": 6,
+              "nPb": 4
+            },
+            "stCompletedWelds": {
+              "nTotal": 6,
+              "nPf": 4,
+              "nPb": 2
+            },
+            "stTotalWeldLength": {
+              "fTotal": 25.6,
+              "fPf": 15.9,
+              "fPb": 9.7
+            },
+            "stCompletedWeldLenght": {
+              "fTotal": 15.2,
+              "fPf": 9.3,
+              "fPb": 5.9
+            }
+          }
+        ],
+        "dtPanelStartTime": "2024-02-08T08:00:00",
+        "dtUpdatingPanelEndTime": "2024-02-08T08:15:00",
+        "dtPanelEndTime": "2024-02-08T08:30:00",
+        "nPanelStatus": 1,
+        "nRobotIndex": 1
+      }
+    ],
+    "arrstRobotData": [
+      {
+        "bRunning": true,
+        "bWeldOn": false,
+        "bError": false,
+        "bIdle": false,
+        "arrstRobotWeldsDaily": [
+          {
+            "nTotal": 8,
+            "nPf": 5,
+            "nPb": 3
+          }
+        ],
+        "arrstRobotWeldLengthDaily": [
+          {
+            "fTotal": 18.7,
+            "fPf": 11.5,
+            "fPb": 7.2
+          }
+        ]
+      }
+    ],
+    "arrstTimeVariablesDaily": [
+      {
+        "arrtRobotDailyRunningTime": [
+          5,
+          6,
+          7,
+          8,
+          6,
+          7,
+          8,
+          5,
+          6,
+          7,
+          8,
+          9,
+          6,
+          7,
+          8,
+          9,
+          7,
+          8,
+          6,
+          9,
+          7,
+          8,
+          6,
+          9
+        ],
+        "arrtRobotDailyWeldingTime": [
+          2,
+          3,
+          2,
+          4,
+          3,
+          2,
+          3,
+          4,
+          3,
+          2,
+          3,
+          4,
+          2,
+          3,
+          4,
+          3,
+          2,
+          3,
+          4,
+          2,
+          3,
+          4,
+          3,
+          2
+        ],
+        "tPortalRunningTime": "03:45:00",
+        "tScanningTime": "02:30:00",
+        "tWaitingTime": "01:15:00"
+      }
+    ]
+  }
+}
+]
