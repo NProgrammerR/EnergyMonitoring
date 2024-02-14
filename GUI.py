@@ -7,11 +7,12 @@ np.random.seed(45)
 
 # Generate random energy consumption data
 num_intervals = 24 * 60 * 12  # 24 hours * 60 minutes * 12 intervals per minute (5 sec intervals)
-energy_consumption = np.random.normal(loc=15, scale=5, size=num_intervals)  # Random normal distribution
+energy_consumption = np.random.normal(loc=16, scale=0.7, size=num_intervals)  # Random normal distribution
 
 # Introduce idle time
+idle_end_index = 0
 for i in range(num_intervals-360):
-    idle_start_index = np.random.randint(0, 1000+360)  # Random start index for idle time (at least 20 minutes)
+    idle_start_index = idle_end_index + np.random.randint(720, 1440)  # Random start index for idle time (at least 20 minutes)
     idle_end_index = idle_start_index + np.random.randint(60, 360)  # Idle time lasts for 20 minutes (1200 intervals)
     energy_consumption[idle_start_index:idle_end_index] = 2  # Set energy consumption to a low value during idle time
     i+=idle_start_index
