@@ -37,3 +37,8 @@ plt.xticks(rotation=45)
 plt.grid(True)
 plt.tight_layout()
 plt.show()
+
+# calculate total energy consumption
+time_interval = 5
+total_energy_consumption = np.trapz(energy_consumption, dx=time_interval / 3600)
+print(total_energy_consumption)
