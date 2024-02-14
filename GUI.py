@@ -10,13 +10,14 @@ num_intervals = 24 * 60 * 12  # 24 hours * 60 minutes * 12 intervals per minute 
 energy_consumption = np.random.normal(loc=16, scale=0.7, size=num_intervals)  # Random normal distribution
 
 # Introduce idle time
+idle_consumption = 2
 idle_end_index = 0
 total_idle_time = 0.0
 i = 0
 while idle_end_index < num_intervals-360:
     idle_start_index = idle_end_index + np.random.randint(720, 1440)  # Random start index for idle time (at least 20 minutes)
     idle_end_index = idle_start_index + np.random.randint(60, 360)  # Idle time lasts for 20 minutes (1200 intervals)
-    energy_consumption[idle_start_index:idle_end_index] = 2 # Set energy consumption to a low value during idle time
+    energy_consumption[idle_start_index:idle_end_index] = idle_consumption # Set energy consumption to a low value during idle time
     total_idle_time += (idle_end_index - idle_start_index)
 
     
@@ -44,7 +45,7 @@ plt.show()
 # calculate total energy consumption
 time_interval = 5
 total_energy_consumption = np.trapz(energy_consumption, dx=time_interval / 3600)
-print(total_energy_consumption)
+print("Total consumption: ", total_energy_consumption)
 
 # calculate total idle and active time in hours
 total_active_time = num_intervals - total_idle_time
@@ -53,3 +54,7 @@ total_idle_time /= 12*60
 print("Total active time: ", total_active_time)
 print("Total idle time: ", total_idle_time)
 print("num_intervals: ", num_intervals)
+
+# calculate idle consumption
+total_idle_consumption = idle_consumption * total_idle_time
+print("Total idle consumption: ", total_idle_consumption)
