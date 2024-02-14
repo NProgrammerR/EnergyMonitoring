@@ -11,15 +11,18 @@ energy_consumption = np.random.normal(loc=16, scale=0.7, size=num_intervals)  # 
 
 # Introduce idle time
 idle_end_index = 0
-for i in range(num_intervals-360):
+total_idle_time = 0.0
+i = 0
+while idle_end_index < num_intervals-360:
     idle_start_index = idle_end_index + np.random.randint(720, 1440)  # Random start index for idle time (at least 20 minutes)
     idle_end_index = idle_start_index + np.random.randint(60, 360)  # Idle time lasts for 20 minutes (1200 intervals)
-    energy_consumption[idle_start_index:idle_end_index] = 2  # Set energy consumption to a low value during idle time
-    i+=idle_start_index
+    energy_consumption[idle_start_index:idle_end_index] = 2 # Set energy consumption to a low value during idle time
+    total_idle_time += (idle_end_index - idle_start_index)
+
     
 # Create time intervals at 5-second intervals
 start_time = pd.Timestamp('2024-02-14 00:00:00')
-time_intervals = pd.date_range(start=start_time, periods=num_intervals, freq='5S')
+time_intervals = pd.date_range(start=start_time, periods=num_intervals, freq='5s')
 
 # Zoom into a 6-hour window
 end_time = start_time + pd.Timedelta(hours=24)
@@ -42,3 +45,11 @@ plt.show()
 time_interval = 5
 total_energy_consumption = np.trapz(energy_consumption, dx=time_interval / 3600)
 print(total_energy_consumption)
+
+# calculate total idle and active time in hours
+total_active_time = num_intervals - total_idle_time
+total_active_time /= 12*60
+total_idle_time /= 12*60
+print("Total active time: ", total_active_time)
+print("Total idle time: ", total_idle_time)
+print("num_intervals: ", num_intervals)
