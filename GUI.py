@@ -46,6 +46,8 @@ print("num_intervals: ", num_intervals)
 
 # calculate idle consumption
 total_idle_consumption = idle_consumption * total_idle_time
+total_active_consumption = total_energy_consumption - total_idle_consumption
+print("Total active consumption: ", total_active_consumption)
 print("Total idle consumption: ", total_idle_consumption)
 
 # calculate active consumption
