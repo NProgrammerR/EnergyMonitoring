@@ -48,8 +48,11 @@ print("num_intervals: ", num_intervals)
 total_idle_consumption = idle_consumption * total_idle_time
 print("Total idle consumption: ", total_idle_consumption)
 
+# calculate active consumption
+total_active_consumption = total_energy_consumption - total_idle_consumption
+
 # Plot the data
-fig, axs = plt.subplots(1, 2, figsize=(15, 6))  # 1 row, 2 columns
+fig, axs = plt.subplots(1, 3, figsize=(15, 6))  # 1 row, 2 columns
 
 # First subplot
 axs[0].plot(zoomed_time_intervals, zoomed_energy_consumption,color='blue', linestyle='-')
@@ -60,10 +63,17 @@ axs[0].tick_params(axis='x', rotation=45)
 axs[0].grid(True)
 
 # Second subplot
-labels = 'Idle', 'Active'
+labels = 'Idle time', 'Active time'
 sizes = [int(total_idle_time), int(total_active_time)]
-axs[1].pie(sizes, labels=labels, autopct='%1.1f%%')
+axs[1].pie(sizes, labels=labels, autopct='%1.1f%%', explode=(0.1, 0))
 axs[1].set_title('Idle and Active Time Distribution')
+
+# Third subplot
+labels = 'Idle Energy', 'Active Energy'
+sizes = [int(total_idle_consumption), int(total_active_consumption)]
+total = sum(sizes)
+axs[2].pie(sizes, labels=labels, autopct=lambda x: f'{x * total / 100:.1f} kWh', explode=(0.25, 0))
+axs[2].set_title('Idle and Active Energy consumption Distribution')
 
 plt.tight_layout()
 plt.show()
